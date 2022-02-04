@@ -1,0 +1,14 @@
+server {
+         listen   80;
+         access_log   /var/log/nginx/mono-fastcgi.log;
+         root /var/www/;
+         server_tokens off;
+         more_clear_headers Server X-AspNet-Version;
+
+         location / {
+                 index index.html index.htm default.aspx Default.aspx;
+                 fastcgi_index /;
+                 fastcgi_pass unix:/var/run/mono-fastcgi.sock;
+                 include /etc/nginx/fastcgi_params;
+         }
+ }
